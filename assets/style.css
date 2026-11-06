@@ -1,0 +1,747 @@
+:root {
+  --paper: #f3efe5;
+  --paper-deep: #e8e0cf;
+  --ink: #20241f;
+  --ink-soft: #66685f;
+  --vermillion: #a84936;
+  --vermillion-dark: #813326;
+  --bamboo: #526b55;
+  --gold: #b28a46;
+  --line: rgba(45, 48, 41, 0.14);
+  --white: #fffdf8;
+  --app-height: 100vh;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  touch-action: manipulation;
+}
+
+body {
+  min-height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button, input {
+  font: inherit;
+  letter-spacing: 0;
+}
+
+button {
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:focus, input:focus {
+  outline: 2px solid rgba(168, 73, 54, 0.5);
+  outline-offset: 2px;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.app-shell {
+  height: 100vh;
+  height: var(--app-height);
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(42, 45, 39, 0.045) 0.6px, transparent 0.6px);
+  background-size: 5px 5px;
+}
+
+.topbar {
+  height: 82px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 28px;
+  padding-top: calc(12px + var(--safe-area-inset-top, env(safe-area-inset-top, 0px)));
+  border-bottom: 1px solid var(--line);
+  background: rgba(243, 239, 229, 0.96);
+}
+
+.brand-block, .progress-summary, .library-heading, .list-meta,
+.study-toolbar, .poem-title-row, .poem-nav, .assessment-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.seal {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  border: 1px solid var(--vermillion);
+  background: var(--vermillion);
+  color: #fff7ed;
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 23px;
+  line-height: 1;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+.brand-block h1 {
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.brand-block p {
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.progress-summary {
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+
+.progress-number {
+  margin-right: 7px;
+  color: var(--vermillion);
+  font-family: Georgia, serif;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.progress-label {
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.main-layout {
+  min-height: 0;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 390px 1fr;
+}
+
+.library-panel {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 22px 18px;
+  border-right: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.57);
+}
+
+.library-heading {
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin-bottom: 4px;
+  color: var(--vermillion);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.library-heading h2 {
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.text-button {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  font-size: 13px;
+}
+
+.search-box {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.search-box > span {
+  margin-right: 8px;
+  color: var(--ink-soft);
+  font-size: 22px;
+  transform: rotate(-15deg);
+}
+
+.search-box input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.search-box input::placeholder {
+  color: #9a998f;
+}
+
+.clear-search {
+  width: 26px;
+  height: 26px;
+  display: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 21px;
+}
+
+.search-box.has-value .clear-search {
+  display: block;
+}
+
+.filter-row {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 14px;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-row::-webkit-scrollbar { display: none; }
+
+.filter-row button {
+  flex: 0 0 auto;
+  margin-right: 7px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.filter-row button.is-active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.list-meta {
+  justify-content: space-between;
+  margin: 12px 0 8px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.favorite-filter {
+  padding: 6px 0 6px 8px;
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.favorite-filter.is-active {
+  color: var(--vermillion);
+}
+
+.poem-list {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+.poem-item {
+  width: 100%;
+  display: block;
+  position: relative;
+  margin-bottom: 8px;
+  padding: 13px 44px 13px 14px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: rgba(255, 253, 248, 0.72);
+  text-align: left;
+}
+
+.poem-item.is-active {
+  border-color: rgba(168, 73, 54, 0.4);
+  background: var(--white);
+  box-shadow: inset 3px 0 0 var(--vermillion);
+}
+
+.poem-item-title {
+  display: block;
+  margin-bottom: 5px;
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.poem-item-meta {
+  display: flex;
+  align-items: center;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.poem-item-meta span:first-child {
+  margin-right: 9px;
+}
+
+.item-state {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 17px;
+  right: 16px;
+  border: 1px solid #aaa99f;
+  border-radius: 50%;
+}
+
+.item-state.familiar { background: var(--gold); border-color: var(--gold); }
+.item-state.mastered { background: var(--bamboo); border-color: var(--bamboo); }
+
+.empty-state {
+  flex: 1;
+  padding-top: 50px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.empty-mark {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 21px;
+}
+
+.empty-state p { margin-bottom: 14px; }
+
+.study-panel {
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  overflow-y: auto;
+  padding: 24px 36px 28px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+.study-visual {
+  width: 56%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background-image: linear-gradient(to bottom, rgba(243, 239, 229, 0.15), rgba(243, 239, 229, 0.72)), url("./ink-landscape.jpg");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.study-toolbar, .poem-sheet, .assessment, .poem-nav {
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.study-toolbar {
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.back-to-list {
+  visibility: hidden;
+  padding: 8px 0;
+  background: transparent;
+  font-size: 13px;
+}
+
+.mode-switch {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: rgba(255, 253, 248, 0.86);
+}
+
+.mode-switch button {
+  min-width: 66px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.mode-switch button.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.favorite-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(255, 253, 248, 0.82);
+  color: var(--ink-soft);
+  font-size: 23px;
+  line-height: 1;
+}
+
+.favorite-button.is-active {
+  color: var(--vermillion);
+}
+
+.poem-sheet {
+  min-height: 430px;
+  padding: 38px 54px 32px;
+  border: 1px solid rgba(61, 62, 54, 0.13);
+  border-radius: 6px;
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: 0 18px 50px rgba(60, 54, 39, 0.09);
+}
+
+.poem-title-row {
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.grade-badge, .mastery-badge {
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+.grade-badge {
+  margin-right: 7px;
+  background: rgba(168, 73, 54, 0.11);
+  color: var(--vermillion-dark);
+}
+
+.grade-badge.extra {
+  background: rgba(82, 107, 85, 0.13);
+  color: var(--bamboo);
+}
+
+.mastery-badge {
+  background: rgba(32, 36, 31, 0.06);
+  color: var(--ink-soft);
+}
+
+.poem-sheet > h2 {
+  text-align: center;
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.poem-byline {
+  margin-top: 7px;
+  color: var(--ink-soft);
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+.poem-lines {
+  min-height: 148px;
+  margin: 30px 0 28px;
+  text-align: center;
+}
+
+.poem-line {
+  min-height: 40px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 24px;
+  line-height: 1.4;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.poem-line + .poem-line { margin-top: 2px; }
+
+.poem-line.is-hidden {
+  width: 74%;
+  margin-left: auto;
+  margin-right: auto;
+  background: repeating-linear-gradient(90deg, rgba(32, 36, 31, 0.08) 0, rgba(32, 36, 31, 0.08) 12px, rgba(32, 36, 31, 0.04) 12px, rgba(32, 36, 31, 0.04) 18px);
+  color: transparent;
+  cursor: pointer;
+}
+
+.recite-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: -4px;
+  margin-bottom: 24px;
+}
+
+.recite-actions button + button { margin-left: 9px; }
+
+.primary-button, .secondary-button {
+  min-height: 40px;
+  padding: 9px 17px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.primary-button {
+  background: var(--vermillion);
+  color: white;
+}
+
+.primary-button:disabled {
+  background: #aaa79e;
+  cursor: default;
+}
+
+.secondary-button {
+  border: 1px solid var(--line);
+  background: transparent;
+}
+
+.poem-note {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.note-label {
+  flex: 0 0 auto;
+  margin-right: 12px;
+  padding: 3px 7px;
+  border: 1px solid rgba(178, 138, 70, 0.48);
+  color: #8b6b33;
+  font-size: 11px;
+}
+
+.poem-note p {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.7;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.assessment {
+  margin-top: 16px;
+  padding: 17px 20px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(243, 239, 229, 0.56);
+}
+
+.assessment > p {
+  margin-bottom: 13px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  text-align: center;
+}
+
+.assessment-buttons {
+  justify-content: center;
+}
+
+.assessment-buttons button {
+  width: 132px;
+  min-height: 50px;
+  margin-right: 8px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(255, 253, 248, 0.75);
+}
+
+.assessment-buttons button:last-child { margin-right: 0; }
+
+.assessment-buttons button span,
+.assessment-buttons button small {
+  display: block;
+}
+
+.assessment-buttons button span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.assessment-buttons button small {
+  margin-top: 3px;
+  color: var(--ink-soft);
+  font-size: 10px;
+}
+
+.assessment-buttons button.is-active {
+  border-color: var(--bamboo);
+  background: var(--bamboo);
+  color: white;
+}
+
+.assessment-buttons button.is-active small { color: rgba(255,255,255,0.75); }
+
+.poem-nav {
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.poem-nav button {
+  padding: 10px 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.poem-nav span {
+  color: #929187;
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+
+.toast {
+  max-width: 80%;
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  z-index: 20;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: rgba(32, 36, 31, 0.92);
+  color: white;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (hover: hover) {
+  .poem-item:hover { border-color: rgba(168, 73, 54, 0.25); }
+  .text-button:hover, .poem-nav button:hover, .back-to-list:hover { color: var(--vermillion); }
+  .assessment-buttons button:hover { border-color: var(--bamboo); }
+}
+
+@media (max-width: 920px) {
+  .main-layout { grid-template-columns: 340px 1fr; }
+  .study-panel { padding-left: 22px; padding-right: 22px; }
+  .poem-sheet { padding-left: 30px; padding-right: 30px; }
+}
+
+@media (max-width: 720px) {
+  .app-shell { min-height: 0; }
+  .topbar {
+    height: 72px;
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+  .seal { width: 38px; height: 38px; font-size: 21px; }
+  .brand-block h1 { font-size: 22px; }
+  .progress-number { font-size: 24px; }
+  .main-layout {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .library-panel, .study-panel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-right: 0;
+    transition: transform 220ms ease;
+  }
+  .library-panel {
+    z-index: 2;
+    padding: 22px 16px calc(16px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+  }
+  .study-panel {
+    z-index: 1;
+    padding: 16px 14px calc(26px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+    transform: translateX(100%);
+  }
+  .app-shell.show-study .library-panel { transform: translateX(-100%); }
+  .app-shell.show-study .study-panel { transform: translateX(0); }
+  .study-visual {
+    width: 100%;
+    height: 42%;
+    position: absolute;
+    opacity: 0.44;
+  }
+  .back-to-list { visibility: visible; }
+  .study-toolbar { margin-bottom: 12px; }
+  .poem-sheet { min-height: 0; padding: 28px 18px 24px; }
+  .poem-sheet > h2 { font-size: 30px; }
+  .poem-lines { min-height: 132px; margin-top: 24px; margin-bottom: 22px; }
+  .poem-line { min-height: 36px; font-size: 21px; }
+  .poem-line.is-hidden { width: 90%; }
+  .assessment { padding-left: 8px; padding-right: 8px; }
+  .assessment-buttons button { width: 33.333%; margin-right: 6px; padding-left: 4px; padding-right: 4px; }
+  .assessment-buttons button small { font-size: 9px; }
+  .toast { bottom: calc(20px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px))); }
+}
+
+@media (max-width: 370px) {
+  .brand-block p { display: none; }
+  .progress-label { display: none; }
+  .poem-sheet { padding-left: 12px; padding-right: 12px; }
+  .poem-sheet > h2 { font-size: 27px; }
+  .poem-line { font-size: 19px; }
+  .mode-switch button { min-width: 58px; padding-left: 9px; padding-right: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

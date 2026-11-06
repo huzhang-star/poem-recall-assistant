@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3efe5" />
+  <title>一卷诗</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <span class="seal" aria-hidden="true">诗</span>
+        <div>
+          <h1>一卷诗</h1>
+          <p id="todayLine">今日宜读诗</p>
+        </div>
+      </div>
+      <div class="progress-summary" aria-label="背诵进度">
+        <span class="progress-number" id="masteredCount">0</span>
+        <span class="progress-label">已熟记</span>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <aside class="library-panel" id="libraryPanel">
+        <div class="library-heading">
+          <div>
+            <p class="eyebrow">诗库</p>
+            <h2>选一首，慢慢读</h2>
+          </div>
+          <button class="text-button" id="randomButton" type="button">随便一首</button>
+        </div>
+
+        <label class="search-box" for="searchInput">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="诗名、作者、诗句" />
+          <button class="clear-search" id="clearSearch" type="button" aria-label="清空搜索">×</button>
+        </label>
+
+        <div class="filter-row" id="gradeFilters" aria-label="按年级筛选"></div>
+
+        <div class="list-meta">
+          <span id="resultCount">0 首</span>
+          <button class="favorite-filter" id="favoriteFilter" type="button" aria-pressed="false">☆ 只看收藏</button>
+        </div>
+
+        <div class="poem-list" id="poemList" role="list"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <span class="empty-mark">无</span>
+          <p>没有找到合适的诗</p>
+          <button class="text-button" id="resetFilters" type="button">清除筛选</button>
+        </div>
+      </aside>
+
+      <section class="study-panel" id="studyPanel">
+        <div class="study-visual" aria-hidden="true"></div>
+
+        <div class="study-toolbar">
+          <button class="back-to-list" id="backToList" type="button">← 诗库</button>
+          <div class="mode-switch" role="group" aria-label="背诵模式">
+            <button type="button" data-mode="read" class="is-active">诵读</button>
+            <button type="button" data-mode="recite">背诵</button>
+          </div>
+          <button class="favorite-button" id="favoriteButton" type="button" aria-label="收藏此诗" aria-pressed="false">☆</button>
+        </div>
+
+        <article class="poem-sheet">
+          <div class="poem-title-row">
+            <span class="grade-badge" id="detailGrade">一年级</span>
+            <span class="mastery-badge" id="masteryBadge">未开始</span>
+          </div>
+          <h2 id="detailTitle"></h2>
+          <p class="poem-byline"><span id="detailDynasty"></span> · <span id="detailAuthor"></span></p>
+
+          <div class="poem-lines" id="poemLines" aria-live="polite"></div>
+
+          <div class="recite-actions" id="reciteActions" hidden>
+            <button class="primary-button" id="revealNext" type="button">揭晓下一句</button>
+            <button class="secondary-button" id="resetRecite" type="button">重新遮住</button>
+          </div>
+
+          <div class="poem-note">
+            <span class="note-label">诗眼</span>
+            <p id="detailHint"></p>
+          </div>
+        </article>
+
+        <div class="assessment" id="assessment">
+          <p>这首诗，记得如何？</p>
+          <div class="assessment-buttons">
+            <button type="button" data-level="learning"><span>再练练</span><small>尚不熟</small></button>
+            <button type="button" data-level="familiar"><span>差不多</span><small>偶尔卡顿</small></button>
+            <button type="button" data-level="mastered"><span>已熟记</span><small>脱口而出</small></button>
+          </div>
+        </div>
+
+        <nav class="poem-nav" aria-label="切换诗篇">
+          <button id="previousPoem" type="button">← 上一首</button>
+          <span id="poemPosition">1 / 1</span>
+          <button id="nextPoem" type="button">下一首 →</button>
+        </nav>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
